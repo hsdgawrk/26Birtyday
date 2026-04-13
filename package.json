@@ -1,0 +1,13 @@
+{
+  "name": "birthday-meta-game",
+  "version": "1.0.0",
+  "description": "A sci-fi themed meta-game birthday website",
+  "scripts": {
+    "dev": "node dev-server.js",
+    "deploy": "vercel deploy --prod"
+  },
+  "dependencies": {
+    "dotenv": "^16.3.1",
+    "openai": "^4.20.0"
+  }
+}

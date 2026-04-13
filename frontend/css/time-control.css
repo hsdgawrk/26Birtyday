@@ -1,0 +1,152 @@
+/* 时间控制模态框 */
+#time-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.95);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+    backdrop-filter: blur(10px);
+}
+
+#time-modal.hidden {
+    display: none;
+}
+
+.modal-content {
+    background: linear-gradient(135deg, rgba(30, 30, 40, 0.95), rgba(20, 20, 30, 0.95));
+    border: 2px solid rgba(255, 77, 109, 0.5);
+    border-radius: 20px;
+    padding: 3rem 2rem;
+    max-width: 500px;
+    width: 90%;
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(255, 77, 109, 0.3), 0 0 100px rgba(255, 77, 109, 0.1);
+    animation: modalGlow 2s ease-in-out infinite alternate;
+}
+
+@keyframes modalGlow {
+    0% {
+        box-shadow: 0 20px 60px rgba(255, 77, 109, 0.3), 0 0 100px rgba(255, 77, 109, 0.1);
+    }
+    100% {
+        box-shadow: 0 20px 60px rgba(255, 77, 109, 0.5), 0 0 120px rgba(255, 77, 109, 0.2);
+    }
+}
+
+.modal-title {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #ff4d6d;
+    margin-bottom: 1.5rem;
+    text-shadow: 0 0 20px rgba(255, 77, 109, 0.5);
+}
+
+.modal-message {
+    font-size: 1.2rem;
+    color: rgba(200, 200, 220, 0.8);
+    margin-bottom: 2rem;
+    line-height: 1.6;
+}
+
+/* 倒计时样式 */
+.countdown-container {
+    margin: 2rem 0;
+}
+
+.countdown-title {
+    font-size: 1.1rem;
+    color: rgba(200, 200, 220, 0.6);
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.countdown-display {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.countdown-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.countdown-value {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #ff4d6d;
+    background: rgba(255, 77, 109, 0.1);
+    padding: 0.5rem 1rem;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 77, 109, 0.3);
+    min-width: 70px;
+    text-shadow: 0 0 10px rgba(255, 77, 109, 0.5);
+}
+
+.countdown-label {
+    font-size: 0.8rem;
+    color: rgba(200, 200, 220, 0.5);
+    margin-top: 0.5rem;
+    text-transform: uppercase;
+}
+
+/* 关闭提示样式 */
+.closed-message {
+    font-size: 1.5rem;
+    color: #ff4d6d;
+    font-weight: bold;
+    text-shadow: 0 0 20px rgba(255, 77, 109, 0.5);
+}
+
+/* 装饰元素 */
+.modal-decoration {
+    position: absolute;
+    top: -50px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 100px;
+    background: radial-gradient(circle, rgba(255, 77, 109, 0.3), transparent);
+    border-radius: 50%;
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateX(-50%) translateY(0);
+    }
+    50% {
+        transform: translateX(-50%) translateY(-20px);
+    }
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .modal-content {
+        padding: 2rem 1.5rem;
+    }
+
+    .modal-title {
+        font-size: 1.5rem;
+    }
+
+    .modal-message {
+        font-size: 1rem;
+    }
+
+    .countdown-value {
+        font-size: 1.8rem;
+        min-width: 55px;
+    }
+
+    .countdown-display {
+        gap: 0.5rem;
+    }
+}

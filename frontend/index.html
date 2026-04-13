@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday!</title>
+    <link rel="stylesheet" href="css/birthday.css">
+    <link rel="stylesheet" href="css/terminal.css">
+    <link rel="stylesheet" href="css/time-control.css">
+</head>
+<body>
+    <!-- 粒子背景 -->
+    <canvas id="particles"></canvas>
+
+    <!-- 气球 -->
+    <div class="balloons-container">
+        <div class="balloon balloon-1"><div class="string"></div></div>
+        <div class="balloon balloon-2"><div class="string"></div></div>
+        <div class="balloon balloon-3"><div class="string"></div></div>
+        <div class="balloon balloon-4"><div class="string"></div></div>
+        <div class="balloon balloon-5"><div class="string"></div></div>
+    </div>
+
+    <!-- 生日页面 -->
+    <div id="birthday-page" class="page">
+
+        <!-- ===== Hero Section ===== -->
+        <section class="hero">
+            <!-- SVG 蛋糕 -->
+            <div class="cake-section">
+                <svg class="cake-svg" viewBox="0 0 240 220" xmlns="http://www.w3.org/2000/svg">
+                    <!-- 光晕 -->
+                    <ellipse class="flame-glow" cx="120" cy="16" rx="28" ry="18" fill="rgba(255,200,50,0.15)"/>
+                    <!-- 蜡烛 -->
+                    <rect x="116" y="26" width="8" height="24" rx="3" fill="url(#candleGrad)"/>
+                    <!-- 火焰 -->
+                    <g class="flame-group" style="transform-origin: 120px 22px;">
+                        <ellipse cx="120" cy="18" rx="5" ry="10" fill="#ffd700" opacity="0.9"/>
+                        <ellipse cx="120" cy="15" rx="3" ry="6"  fill="#ffaa00" opacity="0.9"/>
+                        <ellipse cx="120" cy="13" rx="1.5" ry="4" fill="#fff5cc"/>
+                    </g>
+
+                    <!-- 顶层（最窄） -->
+                    <rect x="75" y="50" width="90" height="8" rx="4" fill="#f8e8f0"/>
+                    <rect x="75" y="54" width="90" height="26" rx="3" fill="url(#layer1Grad)"/>
+                    <circle cx="90" cy="52" r="3.5" fill="#f8e8f0"/>
+                    <circle cx="115" cy="52" r="3.5" fill="#f8e8f0"/>
+                    <circle cx="140" cy="52" r="3.5" fill="#f8e8f0"/>
+                    <circle cx="100" cy="65" r="4" fill="#ff4d6d" opacity="0.7"/>
+                    <circle cx="140" cy="65" r="4" fill="#ff4d6d" opacity="0.7"/>
+
+                    <!-- 中层（中等） -->
+                    <rect x="58" y="80" width="124" height="8" rx="4" fill="#f0d8e8"/>
+                    <rect x="58" y="84" width="124" height="28" rx="3" fill="url(#layer2Grad)"/>
+                    <circle cx="75" cy="82" r="3.5" fill="#f0d8e8"/>
+                    <circle cx="100" cy="82" r="3.5" fill="#f0d8e8"/>
+                    <circle cx="125" cy="82" r="3.5" fill="#f0d8e8"/>
+                    <circle cx="150" cy="82" r="3.5" fill="#f0d8e8"/>
+                    <circle cx="85" cy="96" r="4" fill="#ff4d6d" opacity="0.7"/>
+                    <circle cx="125" cy="96" r="4" fill="#ff4d6d" opacity="0.7"/>
+                    <circle cx="160" cy="96" r="4" fill="#ff4d6d" opacity="0.7"/>
+
+                    <!-- 底层（最宽） -->
+                    <rect x="42" y="112" width="156" height="8" rx="4" fill="#d8e8f0"/>
+                    <rect x="42" y="116" width="156" height="30" rx="3" fill="url(#layer3Grad)"/>
+                    <circle cx="60" cy="114" r="3.5" fill="#d8e8f0"/>
+                    <circle cx="85" cy="114" r="3.5" fill="#d8e8f0"/>
+                    <circle cx="110" cy="114" r="3.5" fill="#d8e8f0"/>
+                    <circle cx="135" cy="114" r="3.5" fill="#d8e8f0"/>
+                    <circle cx="160" cy="114" r="3.5" fill="#d8e8f0"/>
+                    <circle cx="72" cy="130" r="4" fill="#ff4d6d" opacity="0.7"/>
+                    <circle cx="110" cy="130" r="4" fill="#ff4d6d" opacity="0.7"/>
+                    <circle cx="148" cy="130" r="4" fill="#ff4d6d" opacity="0.7"/>
+
+                    <!-- 底座 -->
+                    <rect x="35" y="146" width="170" height="6" rx="3" fill="rgba(255,255,255,0.08)"/>
+                    <rect x="45" y="152" width="150" height="4" rx="2" fill="rgba(255,255,255,0.05)"/>
+
+                    <!-- 渐变 -->
+                    <defs>
+                        <linearGradient id="candleGrad" x1="0" y1="0" x2="0" y2="1">
+                            <stop offset="0%" stop-color="#ffd700"/>
+                            <stop offset="100%" stop-color="#ff8c00"/>
+                        </linearGradient>
+                        <linearGradient id="layer1Grad" x1="0" y1="0" x2="0" y2="1">
+                            <stop offset="0%" stop-color="#f0a0b8"/>
+                            <stop offset="100%" stop-color="#d87090"/>
+                        </linearGradient>
+                        <linearGradient id="layer2Grad" x1="0" y1="0" x2="0" y2="1">
+                            <stop offset="0%" stop-color="#e8829a"/>
+                            <stop offset="100%" stop-color="#c44569"/>
+                        </linearGradient>
+                        <linearGradient id="layer3Grad" x1="0" y1="0" x2="0" y2="1">
+                            <stop offset="0%" stop-color="#80c8d8"/>
+                            <stop offset="100%" stop-color="#50a0b8"/>
+                        </linearGradient>
+                    </defs>
+                </svg>
+            </div>
+
+            <h1 class="hero-title">Happy Birthday</h1>
+            <p class="hero-subtitle">— 希望黄志永远蹦蹦跳跳 —</p>
+
+            <div class="scroll-hint">
+                <span>SCROLL</span>
+                <div class="arrow"></div>
+            </div>
+        </section>
+
+        <!-- ===== 内容区域 ===== -->
+        <div class="content-section" id="content-section">
+
+            <!-- 祝福语 -->
+            <section class="section blessing-section">
+                <div class="section-divider"></div>
+                <h2 class="blessing-title">今天，是我们小黄豆17岁生日的10周年纪念日</h2>
+                <p class="blessing-text">
+                    转眼间，我的小黄豆就长大啦！从一个可可爱爱的小豆变成了一个被生活风浪摧残的小豆，唯一不变的就是，豆依然是小豆哦。
+                    小黄豆的心思我是懂的，对你而言，用心做出的礼物是要远胜过完成任务一般的那种。这一年里，内蒙古、南京、青岛、天津...都是我们共同用步数丈量过的城市。除此之外，我们还办了世界上独一无二的、绝对会被大家祝福的婚礼！
+                    随着我们的革命友谊进入了新阶段，有矛盾有冲突那都在所难免。虽然怕丢面子、不想承认，但是我觉得有分歧时候，你的决定往往是正确的捏。
+                    这一年是极其特殊的一年，很多时候我都会有一种“责任在增加”的感觉，这让曾经随遇而安的我开始变得考虑后果，因为我不想让这份来之不易的幸福溜走。
+                    
+                    过去一年里，像这样的网页感觉迎来了爆发式的增长，估计也是因为AI技术比较发达的事。所以呢，我也赶了赶时髦，做一个漂亮的网页，在互联网的一角留下属于我们的这份共同记忆。
+                    但是捏，豆也知道，我这一年因为各种事情也是忙的不可开交。所以我做这个页面的时候只准备了文案，<span class="corrupted" data-glitch="Out-of-memory!Out-of-memory!Out-of-memory!">所有的框架和代码我一点也没有审核</span>。有点问题呢，比如排版错乱啥的，应该也在预期之内。
+                    这个你得原谅我咯 QAQ
+
+                    新的一年，愿我的豆就是开心快乐、永远不愁！愿你的每一天都充满<span class="corrupted" data-glitch="0x535953">惊喜</span>与美好。
+                </p>
+                <p class="blessing-text" style="margin-top: 1rem;">
+                    生活就像一盒巧克力，你永远不知道下一颗是什么味道——但今天这<span class="corrupted" data-glitch="ERR_CONN">颗，一定是甜的</span>。
+                </p>
+
+                <!-- 异常文字块（彩蛋入口 1）-->
+                <div class="glitch-block" id="glitch-trigger">
+                    <p class="normal-text">
+                        🎂 许个愿吧，闭上眼错误：Out Of Memory! 0x0000000A Can not be 'READ'. Rendering will cause CRASH CRASH CRASH CRASH CRASH CRASH CRASH CRASH CRASH CRASH
+                    </p>
+                    <div class="glitch-overlay">
+                        <div>[SYSTEM_ANOMALY_DETECTED]</div>
+                        <div>ERR::0xDEAD_BEEF — 0x53595354454D5F425245414348</div>
+                        <div>WARNING: Unauthorized access detected at sector 7G</div>
+                        <div>...intercepting... ████████░░ 80%</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 时间线 -->
+            <section class="section timeline-section">
+                <h2 class="timeline-title">时光轴</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-year">PAST</div>
+                        <div class="timeline-desc">过去的一年，你经历了很多。有欢笑，有泪水，但最重要的是——你都挺过来了。</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">PRESENT</div>
+                        <div class="timeline-desc">今天，你坐在这里，看着屏幕上这些文字。也许你没注意到，这个世界有时候会露出它的<span class="corrupted" data-glitch="BACKDOOR">缝隙</span>。</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">FUTURE</div>
+                        <div class="timeline-desc">新的一年，新的开始。愿你继续勇敢，继续热爱，继续<span class="corrupted" data-glitch="0x414343455353">做自己</span>。<font color="red">Bug不能被原谅Bug不能被原谅Bug不能被原谅Bug不能被原谅Bug不能被原谅Bug不能被原谅Bug不能被原谅Bug不能被原谅Bug不能被原谅Bug不能被原谅Bug不能被原谅Bug不能被原谅Bug不能被原谅Bug不能被原谅Bug不能被原谅Bug不能被原谅Bug不能被原谅Bug不能被原谅Bug不能被原谅Bug不能被原谅Bug不能被原谅Bug不能被原谅Bug不能被原谅Bug不能被原谅Bug不能被原谅Bug不能被原谅Bug不能被原谅Bug不能被原谅Bug不能被原谅Bug不能被原谅Bug不能被原谅Bug不能被原谅Bug不能被原谅Bug不能被原谅Bug不能被原谅Bug不能被原谅Bug不能被原谅Bug不能被原谅Bug不能被原谅Bug不能被原谅Bug不能被原谅Bug不能被原谅Bug不能被原谅Bug不能被原谅Bug不能被原谅Bug不能被原谅Bug不能被原谅Bug不能被原谅Bug不能被原谅Bug不能被原谅Bug不能被原谅Bug不能被原谅Bug不能被原谅Bug不能被原谅Bug不能被原谅Bug不能被原谅Bug不能被原谅Bug不能被原谅Bug不能被原谅Bug不能被原谅Bug不能被原谅Bug不能被原谅Bug不能被原谅Bug不能被原谅Bug不能被原谅Bug不能被原谅Bug不能被原谅Bug不能被原谅Bug不能被原谅</font></div>
+                    </div>
+                </div>
+
+                <!-- 伪装系统状态线（彩蛋入口 2）-->
+                <div class="system-line" id="system-line-trigger">
+                    <div class="line"></div>
+                    <span class="status" id="system-status">SYS:OK</span>
+                    <div class="line"></div>
+                </div>
+            </section>
+
+            <!-- 回忆 -->
+            <section class="section memory-section">
+                <div class="section-divider"></div>
+                <h2 class="blessing-title">一些回忆</h2>
+                <p class="blessing-text">
+                    wuli黄豆！记得你曾经跟我说过：<font color="red">谁能把这么简单的网页前端做的漏洞百出！</font><span class="corrupted" data-glitch="0x53544F50">虽然最后没能帮你实现咯</span>，但我知道，你值得拥有世界上最好的一切。
+                </p>
+                <p class="blessing-text" style="margin-top: 1rem;">
+                    那些一起走过的路、一起熬过的夜、一起笑与泪的瞬间——这些<span class="corrupted" data-glitch="DATA_LOST">才是最重要的东西</span>。<font color="red">谁来救救我啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊</font>
+                </p>
+            </section>
+
+            <!-- 更多的话 -->
+            <section class="section wishes-section">
+                <div class="section-divider"></div>
+                <h2 class="blessing-title">新岁的愿望</h2>
+                <p class="blessing-text">
+                    希望新的一年，你能有更多的时间做自己。不必在意别人的目光，不必追逐别人设定的目标。你<span class="corrupted" data-glitch="FATAL_ERR">有你自己</span>的节奏，有你自己<span class="corrupted" data-glitch="0x5245414C">的故事</span>。
+                </p>
+                <p class="blessing-text" style="margin-top: 1rem;">
+                    愿你的快乐像代码一样<span class="corrupted" data-glitch="RUNTIME">永不崩溃</span>，愿你的生活像算法一样<span class="corrupted" data-glitch="OPTIMAL">永远最优</span>。
+                </p>
+                <p class="blessing-text" style="margin-top: 1rem; color: rgba(200,200,220,0.5); font-size: 0.9rem;">
+                    （继续往下看看吧……也许你会发现一些<span class="corrupted" data-glitch="0x4E4F54">不一样</span>的东西）
+                </p>
+            </section>
+
+            <!-- 暗示终端入口 -->
+            <section class="terminal-hint" id="terminal-hint">
+                <p>[ IF YOU CAN READ THIS — TAP HERE OR PRESS ` THREE TIMES ]</p>
+            </section>
+
+        </div>
+    </div>
+
+    <!-- 崩溃覆盖层 -->
+    <div id="crash-overlay" class="crash-overlay">
+        <div class="crash-content">
+            <div class="crash-title">⚠ 致命系统错误</div>
+            <div class="crash-lines">
+                <div>EXCEPTION: MEMORY_OVERFLOW at 0x00DEAD00</div>
+                <div>堆栈跟踪：</div>
+                <div class="stack-indent">→ 堆内存损坏已确认</div>
+                <div class="stack-indent">→ 缓冲区溢出，扇区 7G</div>
+                <div class="stack-indent">→ 内核恐慌：无法同步</div>
+                <div>数据完整性：<span class="crash-warn">已受损</span></div>
+                <div>现实锚点：<span class="crash-warn">已失稳</span></div>
+                <div>检测到未授权访问——来源未知</div>
+                <div class="crash-pause"></div>
+                <div>正在尝试安全模式恢复……</div>
+                <div class="crash-loader">[████████░░░░░░░░░░░░] 40%</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 终端页面（初始隐藏） -->
+    <div id="terminal-page" class="page hidden">
+        <div class="terminal-overlay"></div>
+        <div class="terminal-container">
+            <div id="terminal-output"></div>
+            <div class="input-line">
+                <span class="prompt">user@system:~$</span>
+                <input type="text" id="terminal-input" autocomplete="off" spellcheck="false">
+            </div>
+        </div>
+    </div>
+
+    <script src="js/particles.js"></script>
+    <script src="js/time-control.js"></script>
+    <script src="js/scroll-glitch.js"></script>
+    <script src="js/easter-eggs.js"></script>
+    <script src="js/terminal.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

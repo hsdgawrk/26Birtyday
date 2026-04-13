@@ -1,0 +1,716 @@
+/* ===========================================================
+   BIRTHDAY PAGE - 高级 Sci-Fi 主题样式
+   =========================================================== */
+
+/* === 基础样式 === */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', system-ui, sans-serif;
+  background: #0a0a1a;
+  color: #e4e4e4;
+  overflow-x: hidden;
+}
+
+/* 粒子背景 */
+#particles {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* 页面容器 */
+.page {
+  position: relative;
+  opacity: 1;
+  visibility: visible;
+  z-index: 1;
+  transition: opacity 0.8s ease, visibility 0.8s ease;
+}
+
+.page.hidden {
+  opacity: 0;
+  visibility: hidden;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  min-height: 100vh;
+}
+
+/* ===========================================================
+   HERO SECTION
+   =========================================================== */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+  padding: 2rem;
+  background:
+    radial-gradient(ellipse at 20% 50%, rgba(88, 40, 180, 0.15) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 50%, rgba(0, 180, 255, 0.1) 0%, transparent 50%),
+    linear-gradient(180deg, #0a0a1a 0%, #0f1628 50%, #0a0a1a 100%);
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 150px;
+  background: linear-gradient(to bottom, transparent, #0a0a1a);
+  pointer-events: none;
+}
+
+/* 主标题 */
+.hero-title {
+  font-size: clamp(2.5rem, 8vw, 5rem);
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  background: linear-gradient(135deg, #00d4ff 0%, #7b2cbf 40%, #ff6b9d 70%, #00d4ff 100%);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: hero-gradient 6s ease infinite;
+  margin-bottom: 0.5rem;
+}
+
+@keyframes hero-gradient {
+  0%, 100% { background-position: 0% 50%; }
+  25% { background-position: 100% 0%; }
+  50% { background-position: 100% 50%; }
+  75% { background-position: 0% 100%; }
+}
+
+.hero-subtitle {
+  font-size: clamp(1rem, 3vw, 1.3rem);
+  color: rgba(200, 200, 220, 0.7);
+  font-weight: 300;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  margin-bottom: 3rem;
+}
+
+/* 滚动提示 */
+.scroll-hint {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: rgba(200, 200, 220, 0.4);
+  font-size: 0.8rem;
+  letter-spacing: 0.2em;
+  animation: scroll-bounce 2s ease-in-out infinite;
+  z-index: 5;
+}
+
+.scroll-hint .arrow {
+  width: 20px;
+  height: 20px;
+  border-right: 2px solid rgba(200, 200, 220, 0.4);
+  border-bottom: 2px solid rgba(200, 200, 220, 0.4);
+  transform: rotate(45deg);
+}
+
+@keyframes scroll-bounce {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(10px); }
+}
+
+/* ===========================================================
+   SVG 生日蛋糕
+   =========================================================== */
+.cake-section {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.cake-svg {
+  width: clamp(160px, 40vw, 260px);
+  height: auto;
+  filter: drop-shadow(0 10px 30px rgba(0, 180, 255, 0.15));
+}
+
+/* 蜡烛火焰 */
+@keyframes flame-dance {
+  0%, 100% { transform: scaleY(1) scaleX(1) rotate(-1deg); opacity: 1; }
+  25% { transform: scaleY(1.1) scaleX(0.9) rotate(2deg); }
+  50% { transform: scaleY(0.95) scaleX(1.05) rotate(-2deg); }
+  75% { transform: scaleY(1.05) scaleX(0.95) rotate(1deg); }
+}
+
+.flame-group {
+  animation: flame-dance 0.4s ease-in-out infinite alternate;
+  transform-origin: center bottom;
+}
+
+@keyframes glow-pulse {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.6; }
+}
+
+.flame-glow {
+  animation: glow-pulse 1.5s ease-in-out infinite;
+}
+
+/* ===========================================================
+   内容区域
+   =========================================================== */
+.content-section {
+  position: relative;
+  z-index: 2;
+  background: #0a0a1a;
+}
+
+.section {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 4rem 2rem;
+}
+
+.section-divider {
+  width: 60px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #7b2cbf, transparent);
+  margin: 0 auto 3rem;
+}
+
+/* 祝福语区块 */
+.blessing-section {
+  text-align: center;
+}
+
+.blessing-title {
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  font-weight: 600;
+  color: #e0e0f0;
+  margin-bottom: 1.5rem;
+}
+
+.blessing-text {
+  font-size: 1.05rem;
+  line-height: 2;
+  color: rgba(200, 200, 220, 0.75);
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+/* 时间线区块 */
+.timeline-section {
+  padding-top: 2rem;
+}
+
+.timeline-title {
+  text-align: center;
+  font-size: clamp(1.3rem, 3.5vw, 1.8rem);
+  font-weight: 600;
+  color: #e0e0f0;
+  margin-bottom: 3rem;
+}
+
+.timeline {
+  position: relative;
+  padding-left: 30px;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(180deg, #7b2cbf, #00d4ff, #ff6b9d);
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 2.5rem;
+  padding-left: 20px;
+}
+
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: -34px;
+  top: 6px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #7b2cbf;
+  border: 2px solid #0a0a1a;
+  box-shadow: 0 0 10px rgba(123, 44, 191, 0.5);
+}
+
+.timeline-year {
+  font-size: 0.85rem;
+  color: #00d4ff;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  margin-bottom: 0.3rem;
+}
+
+.timeline-desc {
+  font-size: 0.95rem;
+  color: rgba(200, 200, 220, 0.65);
+  line-height: 1.6;
+}
+
+/* ===========================================================
+   异常 / 故障元素
+   =========================================================== */
+
+/* 异常文字块 - 持久存在 */
+.glitch-block {
+  margin-top: 2rem;
+  padding: 1.5rem 2rem;
+  background: rgba(255, 0, 64, 0.03);
+  border: 1px solid rgba(255, 0, 64, 0.15);
+  border-radius: 4px;
+  cursor: pointer;
+  user-select: none;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.glitch-block:hover {
+  border-color: rgba(255, 0, 64, 0.4);
+  background: rgba(255, 0, 64, 0.08);
+  box-shadow: 0 0 20px rgba(255, 0, 64, 0.1);
+}
+
+.glitch-block .normal-text {
+  font-size: 0.9rem;
+  color: rgba(200, 200, 220, 0.6);
+  line-height: 1.8;
+  transition: all 0.15s;
+}
+
+.glitch-block .glitch-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 1.5rem 2rem;
+  opacity: 0;
+  background: rgba(10, 10, 26, 0.92);
+  font-family: 'Courier New', 'Fira Code', monospace;
+  font-size: 0.75rem;
+  color: #ff0040;
+  line-height: 1.8;
+  pointer-events: none;
+  transition: opacity 0.15s;
+}
+
+/* 闪烁时显示 overlay */
+.glitch-block.flash .glitch-overlay {
+  opacity: 1;
+  animation: glitch-shake 0.4s ease;
+}
+
+@keyframes glitch-shake {
+  0% { transform: translate(0); opacity: 0; }
+  10% { transform: translate(-3px, 2px); opacity: 1; }
+  20% { transform: translate(3px, -1px); }
+  30% { transform: translate(-2px, 1px); }
+  40% { transform: translate(2px, -2px); }
+  50% { transform: translate(-1px, 1px); }
+  60% { transform: translate(1px, 0); opacity: 0.8; }
+  100% { opacity: 0; transform: translate(0); }
+}
+
+/* 随机故障 - 文字腐蚀 */
+.corrupted {
+  position: relative;
+  display: inline;
+}
+
+.corrupted::after {
+  content: attr(data-glitch);
+  position: absolute;
+  top: 0;
+  left: 2px;
+  color: #ff0040;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.corrupted.active::after {
+  animation: text-corrupt 0.15s steps(2) infinite;
+  opacity: 0.8;
+}
+
+@keyframes text-corrupt {
+  0% { opacity: 0; transform: translate(0); }
+  25% { opacity: 0.8; transform: translate(-2px, 1px); }
+  50% { opacity: 0; }
+  75% { opacity: 0.6; transform: translate(2px, -1px); }
+  100% { opacity: 0; transform: translate(0); }
+}
+
+/* 隐藏的系统状态线 */
+.system-line {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 2rem 0;
+  opacity: 0.25;
+  transition: opacity 0.3s;
+}
+
+.system-line:hover {
+  opacity: 0.6;
+}
+
+.system-line .line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(0, 255, 65, 0.3), transparent);
+}
+
+.system-line .status {
+  font-family: 'Courier New', monospace;
+  font-size: 0.65rem;
+  color: #00ff41;
+  letter-spacing: 0.15em;
+  white-space: nowrap;
+}
+
+/* 底部提示 */
+.terminal-hint {
+  text-align: center;
+  padding: 3rem 2rem;
+  position: relative;
+}
+
+.terminal-hint p {
+  font-family: 'Courier New', monospace;
+  font-size: 0.8rem;
+  color: rgba(0, 255, 65, 0.25);
+  letter-spacing: 0.2em;
+  animation: hint-pulse 4s ease-in-out infinite;
+}
+
+@keyframes hint-pulse {
+  0%, 100% { opacity: 0.15; }
+  50% { opacity: 0.4; }
+}
+
+/* ===========================================================
+   气球 - 高级浮动动画
+   =========================================================== */
+.balloons-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.balloon {
+  position: absolute;
+  bottom: -120px;
+  width: clamp(30px, 6vw, 45px);
+  height: clamp(38px, 7.5vw, 56px);
+  border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
+  opacity: 0;
+  animation: elegant-float linear infinite;
+  filter: blur(0.3px);
+}
+
+.balloon::before {
+  content: '';
+  position: absolute;
+  top: 15%;
+  left: 20%;
+  width: 30%;
+  height: 25%;
+  background: radial-gradient(ellipse, rgba(255, 255, 255, 0.5), transparent);
+  border-radius: 50%;
+  transform: rotate(-30deg);
+}
+
+.balloon::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 6px solid inherit;
+}
+
+.balloon .string {
+  position: absolute;
+  bottom: -40px;
+  left: 50%;
+  width: 1px;
+  height: 35px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.3), transparent);
+  transform: translateX(-50%);
+}
+
+.balloon-1 {
+  background: linear-gradient(135deg, #c4788a, #a85568);
+  animation-duration: 18s;
+  animation-delay: 0s;
+  left: 8%;
+}
+.balloon-1::after { border-top-color: #a85568; }
+
+.balloon-2 {
+  background: linear-gradient(135deg, #7ba4a0, #5d8a86);
+  animation-duration: 22s;
+  animation-delay: -5s;
+  left: 25%;
+}
+.balloon-2::after { border-top-color: #5d8a86; }
+
+.balloon-3 {
+  background: linear-gradient(135deg, #8b7ec8, #6d5fb0);
+  animation-duration: 20s;
+  animation-delay: -10s;
+  left: 50%;
+}
+.balloon-3::after { border-top-color: #6d5fb0; }
+
+.balloon-4 {
+  background: linear-gradient(135deg, #c8a87e, #b08d60);
+  animation-duration: 25s;
+  animation-delay: -3s;
+  left: 75%;
+}
+.balloon-4::after { border-top-color: #b08d60; }
+
+.balloon-5 {
+  background: linear-gradient(135deg, #9bb5a0, #7d9d82);
+  animation-duration: 19s;
+  animation-delay: -14s;
+  left: 90%;
+}
+.balloon-5::after { border-top-color: #7d9d82; }
+
+@keyframes elegant-float {
+  0% {
+    transform: translateY(0) translateX(0) rotate(0deg);
+    opacity: 0;
+  }
+  5% { opacity: 0.6; }
+  15% { opacity: 0.7; }
+  50% {
+    transform: translateY(-55vh) translateX(15px) rotate(3deg);
+    opacity: 0.65;
+  }
+  85% { opacity: 0.5; }
+  95% { opacity: 0; }
+  100% {
+    transform: translateY(-110vh) translateX(-10px) rotate(-2deg);
+    opacity: 0;
+  }
+}
+
+/* ===========================================================
+   页面过渡
+   =========================================================== */
+.page-glitch {
+  animation: full-glitch 0.6s ease forwards;
+}
+
+@keyframes full-glitch {
+  0% { filter: none; transform: none; }
+  10% { filter: hue-rotate(90deg); transform: translate(-8px, 3px); }
+  20% { filter: hue-rotate(180deg) saturate(2); transform: translate(6px, -2px); }
+  30% { filter: hue-rotate(270deg); transform: translate(-4px, -3px); }
+  40% { filter: invert(0.1); transform: translate(4px, 2px); }
+  50% { filter: hue-rotate(45deg) blur(1px); transform: translate(-2px, 1px); }
+  60% { filter: saturate(3) contrast(1.5); transform: translate(3px, -1px); }
+  70% { filter: hue-rotate(90deg); transform: translate(-1px, 2px); }
+  80% { filter: none; transform: translate(2px, 0); }
+  90% { transform: translate(-1px, 0); }
+  100% { filter: none; transform: none; opacity: 0; }
+}
+
+/* ===========================================================
+   崩溃覆盖层（滚动到底部时触发）
+   =========================================================== */
+.crash-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease;
+}
+
+.crash-overlay.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.crash-content {
+  font-family: 'Courier New', 'Fira Code', monospace;
+  color: #ff0040;
+  font-size: clamp(0.7rem, 2.5vw, 0.9rem);
+  max-width: 600px;
+  width: 90%;
+  padding: 2rem;
+  text-align: left;
+}
+
+.crash-title {
+  font-size: clamp(1.2rem, 4vw, 1.8rem);
+  font-weight: bold;
+  color: #ff0040;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  animation: crash-pulse 0.5s ease-in-out infinite alternate;
+}
+
+@keyframes crash-pulse {
+  0% { opacity: 0.7; text-shadow: 0 0 10px rgba(255, 0, 64, 0.5); }
+  100% { opacity: 1; text-shadow: 0 0 30px rgba(255, 0, 64, 0.9); }
+}
+
+.crash-lines div {
+  margin: 4px 0;
+  line-height: 1.6;
+}
+
+.crash-warn {
+  color: #ff6600;
+  font-weight: bold;
+  animation: warn-blink 0.8s step-end infinite;
+}
+
+@keyframes warn-blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0.3; }
+}
+
+.crash-pause {
+  margin: 12px 0 !important;
+  animation: none !important;
+}
+
+.crash-loader {
+  color: #00ff41;
+  margin-top: 10px;
+  animation: loader-flicker 0.3s steps(1) infinite;
+}
+
+@keyframes loader-flicker {
+  0%, 90% { opacity: 1; }
+  95% { opacity: 0.5; }
+  100% { opacity: 1; }
+}
+
+.stack-indent {
+  padding-left: 20px;
+  color: rgba(255, 0, 64, 0.6);
+}
+
+/* ===========================================================
+   滚动触发的渐进 Glitch 效果
+   =========================================================== */
+
+/* 全局 glitch 蒙版 - 随滚动增强 */
+.glitch-scanline {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 50;
+  opacity: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent 0px,
+    transparent 2px,
+    rgba(255, 0, 64, 0.03) 2px,
+    rgba(255, 0, 64, 0.03) 4px
+  );
+  mix-blend-mode: screen;
+}
+
+.glitch-scanline.active {
+  animation: scanline-flicker 0.1s steps(3) infinite;
+}
+
+@keyframes scanline-flicker {
+  0% { opacity: 0.3; }
+  33% { opacity: 0.5; }
+  66% { opacity: 0.2; }
+  100% { opacity: 0.4; }
+}
+
+/* 色块 glitch */
+.glitch-chunk {
+  position: fixed;
+  background: rgba(255, 0, 64, 0.08);
+  pointer-events: none;
+  z-index: 49;
+  opacity: 0;
+  mix-blend-mode: screen;
+}
+
+/* ===========================================================
+   响应式
+   =========================================================== */
+@media (max-width: 768px) {
+  .section { padding: 3rem 1.5rem; }
+  .timeline { padding-left: 25px; }
+  .timeline-item { padding-left: 15px; }
+  .timeline-item::before { left: -29px; }
+  .glitch-block { padding: 1.2rem 1.5rem; }
+  .glitch-block .glitch-overlay { padding: 1.2rem 1.5rem; }
+  .crash-content { font-size: 0.65rem; padding: 1.2rem; }
+}
+
+@media (max-width: 480px) {
+  .hero { min-height: 90vh; padding: 1.5rem; }
+  .section { padding: 2.5rem 1.2rem; }
+  .hero-subtitle { letter-spacing: 0.15em; font-size: 0.85rem; }
+  .balloon { width: 28px; height: 36px; }
+}

@@ -1,0 +1,339 @@
+/* === 终端页面 === */
+#terminal-page {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #0a0a0a;
+  font-family: 'Courier New', 'Fira Code', monospace;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 300;
+}
+
+.terminal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.15) 0px,
+    rgba(0, 0, 0, 0.15) 1px,
+    transparent 1px,
+    transparent 2px
+  );
+  pointer-events: none;
+  z-index: 10;
+}
+
+/* CRT 闪烁效果 */
+#terminal-page::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 255, 65, 0.02);
+  animation: crt-flicker 0.1s infinite alternate;
+  pointer-events: none;
+}
+
+@keyframes crt-flicker {
+  0%, 95% { opacity: 1; }
+  96% { opacity: 0.8; }
+  97% { opacity: 1; }
+  98% { opacity: 0.9; }
+  100% { opacity: 1; }
+}
+
+.terminal-container {
+  width: 90%;
+  max-width: 900px;
+  height: 85dvh;
+  max-height: 85vh;
+  background: rgba(0, 0, 0, 0.9);
+  border: 1px solid #00ff41;
+  border-radius: 4px;
+  padding: 20px;
+  overflow: hidden;
+  position: relative;
+  z-index: 5;
+  box-shadow: 0 0 30px rgba(0, 255, 65, 0.2),
+              inset 0 0 50px rgba(0, 255, 65, 0.05);
+  display: flex;
+  flex-direction: column;
+  /* 隐藏滚动条 - 所有浏览器 */
+  scrollbar-width: none;          /* Firefox */
+  -ms-overflow-style: none;       /* IE / Edge */
+}
+
+.terminal-container::-webkit-scrollbar {
+  display: none;                  /* Chrome / Safari */
+}
+
+#terminal-output {
+  color: #00ff41;
+  font-size: 14px;
+  line-height: 1.6;
+  margin-bottom: 10px;
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+#terminal-output::-webkit-scrollbar {
+  display: none;
+}
+
+#terminal-output .line {
+  margin: 4px 0;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+#terminal-output .system {
+  color: #00ff41;
+}
+
+#terminal-output .user {
+  color: #00d4ff;
+}
+
+#terminal-output .ai {
+  color: #00cc33;
+}
+
+#terminal-output .error {
+  color: #ff0040;
+}
+
+#terminal-output .success {
+  color: #00ff88;
+  text-shadow: 0 0 10px rgba(0, 255, 136, 0.5);
+}
+
+#terminal-output .decoded {
+  color: #ffff00;
+  font-weight: bold;
+  animation: decode-glow 1s ease-in-out;
+}
+
+@keyframes decode-glow {
+  0% { opacity: 0; transform: scale(0.95); }
+  50% { opacity: 1; text-shadow: 0 0 20px rgba(255, 255, 0, 0.8); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+/* 输入行 */
+.input-line {
+  display: flex;
+  align-items: center;
+  border-top: 1px solid rgba(0, 255, 65, 0.2);
+  padding-top: 10px;
+}
+
+.prompt {
+  color: #00ff41;
+  margin-right: 8px;
+  white-space: nowrap;
+}
+
+#terminal-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: #00ff41;
+  font-family: 'Courier New', 'Fira Code', monospace;
+  font-size: 14px;
+  outline: none;
+  caret-color: #00ff41;
+}
+
+#terminal-input::placeholder {
+  color: rgba(0, 255, 65, 0.3);
+}
+
+/* 光标闪烁 */
+.input-line:focus-within .prompt {
+  animation: prompt-blink 1s step-end infinite;
+}
+
+@keyframes prompt-blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0.5; }
+}
+
+/* 打字机动画 */
+.typing .char {
+  opacity: 0;
+  animation: type-char 0.05s forwards;
+}
+
+@keyframes type-char {
+  to { opacity: 1; }
+}
+
+/* 解码进度条 */
+.decode-progress {
+  color: #00ff41;
+  margin: 10px 0;
+}
+
+.decode-bar {
+  display: inline-block;
+  background: #00ff41;
+  height: 12px;
+  width: 0;
+  transition: width 1s ease;
+}
+
+/* 最终揭晓动画 */
+.final-reveal {
+  text-align: center;
+  padding: 30px;
+  animation: reveal-pulse 2s ease-in-out;
+}
+
+.final-reveal .answer {
+  font-size: 2rem;
+  color: #ffff00;
+  text-shadow: 0 0 30px rgba(255, 255, 0, 0.8);
+  margin: 20px 0;
+  letter-spacing: 8px;
+}
+
+.final-reveal .birthday {
+  font-size: 1.5rem;
+  color: #ff6b9d;
+  margin-top: 30px;
+}
+
+@keyframes reveal-pulse {
+  0% { transform: scale(0.9); opacity: 0; }
+  50% { transform: scale(1.02); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* === 响应式 - 平板和手机 === */
+@media (max-width: 768px) {
+  .terminal-container {
+    width: 95%;
+    height: 80dvh;
+    max-height: 80vh;
+    padding: 12px;
+  }
+  
+  #terminal-output {
+    font-size: 12px;
+    line-height: 1.5;
+  }
+  
+  #terminal-input {
+    font-size: 12px;
+  }
+
+  .prompt {
+    font-size: 12px;
+  }
+
+  .final-reveal .answer {
+    font-size: clamp(1.2rem, 5vw, 2rem);
+    letter-spacing: clamp(3px, 1.5vw, 8px);
+  }
+
+  .final-reveal .birthday {
+    font-size: clamp(1rem, 4vw, 1.5rem);
+    margin-top: 20px;
+  }
+
+  .final-reveal {
+    padding: 15px;
+  }
+}
+
+/* === 响应式 - 手机竖屏小屏 === */
+@media (max-width: 480px) {
+  .terminal-container {
+    width: 98%;
+    height: 85dvh;
+    max-height: 90vh;
+    padding: 10px;
+    border-radius: 2px;
+  }
+  
+  #terminal-output {
+    font-size: 11px;
+    line-height: 1.45;
+  }
+  
+  #terminal-input {
+    font-size: 11px;
+  }
+
+  .prompt {
+    font-size: 11px;
+    margin-right: 5px;
+  }
+
+  .input-line {
+    padding-top: 6px;
+  }
+
+  .final-reveal .answer {
+    font-size: 1.1rem;
+    letter-spacing: 3px;
+  }
+
+  .final-reveal .birthday {
+    font-size: 0.95rem;
+    margin-top: 15px;
+  }
+
+  .final-reveal {
+    padding: 10px;
+  }
+}
+
+/* === 响应式 - 手机横屏（高度受限）=== */
+@media (max-height: 500px) and (orientation: landscape) {
+  .terminal-container {
+    height: 92dvh;
+    max-height: 95vh;
+    padding: 8px 12px;
+  }
+
+  #terminal-output {
+    font-size: 11px;
+    min-height: auto;
+    max-height: calc(100% - 40px);
+    overflow-y: auto;
+  }
+
+  .input-line {
+    padding-top: 5px;
+  }
+}
+
+/* === 响应式 - 大屏桌面 === */
+@media (min-width: 1200px) {
+  .terminal-container {
+    width: 80%;
+    max-width: 1000px;
+    padding: 25px;
+  }
+
+  #terminal-output {
+    font-size: 15px;
+  }
+
+  #terminal-input {
+    font-size: 15px;
+  }
+}
